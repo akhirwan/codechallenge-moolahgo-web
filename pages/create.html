@@ -57,32 +57,62 @@
 
           e.preventDefault(); 
 
-          // var form = $(this);
-          // var url = form.attr('action');
-
           const name = $('#name').val();
           const email = $('#email').val();
           const phone = $('#phone').val();
-          const url = "http://localhost/codechallenge-moolahgo-service/api/owner?name=" + name + "&email=" + email + "&phone=" + phone;
+          // const url = "http://localhost/codechallenge-moolahgo-service/api/owner?name=" + name + "&email=" + email + "&phone=" + phone;
+          const url = "http://localhost/codechallenge-moolahgo-service/api/owner";
 
-          $.get(url, function(result){
+          $("#submit").click(function(){
 
-            $("#detail").html('');
+            var data = {
+              "name": name,
+              "email": email,
+              "phone": phone
+            };
 
-            if (result.status == 0) {
+            $.post(url, JSON.stringify(data), function(result) {
 
-              content = '<div class="alert alert-warning" role="alert">'+result.message+'</div>';
+              $("#detail").html('');
 
-            } else {
+              var content = '';
 
-              content = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
-              content += '<div class="alert alert-info" role="alert">'+result.referralcode+'</div>';
+              if (result.status == 0) {
 
-            }
+                content = '<div class="alert alert-warning" role="alert">'+result.message+'</div>';
 
-            $("#detail").append(content);
+              } else {
+
+                content = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
+                content += '<div class="alert alert-info" role="alert">'+result.referralcode+'</div>';
+
+              }
+
+
+              $("#detail").append(content);
+
+            });
 
           });
+
+          // $.get(url, function(result){
+
+          //   $("#detail").html('');
+
+          //   if (result.status == 0) {
+
+          //     content = '<div class="alert alert-warning" role="alert">'+result.message+'</div>';
+
+          //   } else {
+
+          //     content = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
+          //     content += '<div class="alert alert-info" role="alert">'+result.referralcode+'</div>';
+
+          //   }
+
+          //   $("#detail").append(content);
+
+          // });
           
       });
 

@@ -50,9 +50,9 @@
         $("#referral_code_botton").click(function(){
 
           const code = $('#referral_code').val();
-          const url = "http://localhost/codechallenge-moolahgo-service/api/process?referral_code=" + code;
+          const url = "http://localhost/codechallenge-moolahgo-service/api/process";
 
-          $.get(url, function(result){
+          $.post(url, JSON.stringify({"referral_code": code}), function(result) {
 
             $("#detail").html('');
 
