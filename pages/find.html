@@ -25,6 +25,8 @@
 
       <br>
 
+      <div id="alert"></div>
+
       <h2>Find user by Referral Code</h2>
 
       <form>
@@ -56,11 +58,12 @@
 
             $("#detail").html('');
 
+            var alert = '';
             var content = '';
 
             if (result.status == 0) {
 
-              content = '<div class="alert alert-warning" role="alert">'+result.message+'</div>';
+              alert = '<div class="alert alert-danger" role="alert">'+result.message+'</div>';
 
             } else {
 
@@ -70,9 +73,9 @@
                 status = '<span class="badge bg-danger">Inactive</span>';
               }
 
-              content = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
+              alert = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
 
-              content += '<table class="table table-striped">';
+              content = '<table class="table table-striped">';
               content += '<tbody>';
               content += '<tr><th scope="row">Id</th><td>'+result.data.id+'</td></tr>';
               content += '<tr><th scope="row">Name</th><td>'+result.data.name+'</td></tr>';
@@ -84,8 +87,11 @@
 
             }
 
+            $("#alert").append(alert);
 
             $("#detail").append(content);
+
+            setTimeout(function(){ $("#alert").html(''); }, 3000);
 
           });
 

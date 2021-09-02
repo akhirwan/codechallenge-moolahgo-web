@@ -25,6 +25,8 @@
 
       <br>
 
+      <div id="alert"></div>
+
       <h2>Create user</h2>
 
       <form id="form">
@@ -63,56 +65,37 @@
           // const url = "http://localhost/codechallenge-moolahgo-service/api/owner?name=" + name + "&email=" + email + "&phone=" + phone;
           const url = "http://localhost/codechallenge-moolahgo-service/api/owner";
 
-          $("#submit").click(function(){
+          var data = {
+            "name": name,
+            "email": email,
+            "phone": phone
+          };
 
-            var data = {
-              "name": name,
-              "email": email,
-              "phone": phone
-            };
+          $.post(url, JSON.stringify(data), function(result) {
 
-            $.post(url, JSON.stringify(data), function(result) {
+            $("#detail").html('');
 
-              $("#detail").html('');
+            var alert = '';
+            var content = '';
 
-              var content = '';
+            if (result.status == 0) {
 
-              if (result.status == 0) {
+              alert = '<div class="alert alert-danger" role="alert">'+result.message+'</div>';
 
-                content = '<div class="alert alert-warning" role="alert">'+result.message+'</div>';
+            } else {
 
-              } else {
+              alert = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
+              content = '<div class="alert alert-info" role="alert">Referral Code : '+result.referralcode+'</div>';
 
-                content = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
-                content += '<div class="alert alert-info" role="alert">'+result.referralcode+'</div>';
+            }
 
-              }
+            $("#alert").append(alert);
 
+            $("#detail").append(content);
 
-              $("#detail").append(content);
-
-            });
+            setTimeout(function(){ $("#alert").html(''); }, 3000);
 
           });
-
-          // $.get(url, function(result){
-
-          //   $("#detail").html('');
-
-          //   if (result.status == 0) {
-
-          //     content = '<div class="alert alert-warning" role="alert">'+result.message+'</div>';
-
-          //   } else {
-
-          //     content = '<div class="alert alert-success" role="alert">'+result.message+'</div>';
-          //     content += '<div class="alert alert-info" role="alert">'+result.referralcode+'</div>';
-
-          //   }
-
-          //   $("#detail").append(content);
-
-          // });
           
       });
 
