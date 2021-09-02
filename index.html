@@ -11,44 +11,23 @@
     <title>Referral Code</title>
   </head>
   <body>
-    <div class="container">
+
+    </br>
+
+    <div class="container"> 
+
       <h1>Referral Code</h1>
 
-      <h2>Send Referral Code to get detail user.</h2>
-
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" name="referral_code" id="referral_code" placeholder="Type Referral Code here ..." aria-label="referral_code" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="pages/find.html" type="button" class="btn btn-outline-primary" id="find_page" onclick="">Find</a>
+        <a href="pages/create.html" type="button" class="btn btn-outline-primary" id="create_page">Create</a>
       </div>
-
-      <div id="detail"></div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-    <script>
-
-      $.ajax({
-        type: "POST",
-        url: "http://localhost/codechallenge-moolahgo-service/api/process",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost/codechallenge-moolahgo-service',
-          'Access-Control-Allow-Headers': '*' ,
-          'Access-Control-Allow-Methods': 'POST',
-        },
-        // dataType: 'jsonp',
-        data: {"referral_code": "DSNZLL"},
-        success: function(result) {
-          console.log(result)
-        }
-      })
-
-    </script>
 
   </body>
 </html>
